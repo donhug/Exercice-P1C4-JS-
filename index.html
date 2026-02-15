@@ -22,15 +22,25 @@
 				<button class="btn-description">filtrer les pièces sans description</button>
 				<br>
 				<button class="btn-decroissant">trier par prix décroissant</button>
+				<br>
+				<p>Prix maximum :</p>
+				<input type="range" name="prix-max" id="prix-max" min="0" max="60" step="5" list="tickmark"/>
+				<datalist id="tickmark">
+					<option value="0"></option>
+					<option value="15"></option>
+					<option value="30"></option>
+					<option value="45"></option>
+					<option value="60"></option>
+				</datalist>
 			</section>
 
 			<!-- Fiches produits -->
 			<section class="fiches">
 				<div class="abordables">
-					<p>Pièces abordables</p>
+
 				</div>
 				<div class="disponible">
-					<p>Pièces disponibles</p>
+
 				</div>
 			</section>
 		</main>
