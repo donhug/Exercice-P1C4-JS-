@@ -65,3 +65,43 @@ boutonDecroissant.addEventListener("click", function(){
     });
     console.log(piecesOrdonnees);
 });
+
+const noms = pieces.map(piece => piece.nom);
+for(let i = pieces.length -1 ; i >= 0; i--){
+    if(pieces[i].prix > 35){
+        noms.splice(i,1);
+    }
+}
+
+//Création de la liste
+const abordablesElements = document.createElement('ul');
+//Ajout de chaque nom à la liste
+for(let i=0; i < noms.length ; i++){
+    const nomElement = document.createElement('li');
+    nomElement.innerText = noms[i];
+    abordablesElements.appendChild(nomElement)
+    console.log(nomElement);
+}
+// Ajout de l'en-tête puis de la liste au bloc résultats filtres
+document.querySelector('.abordables')
+    .appendChild(abordablesElements);
+
+const nomDispo = pieces.map(piece => piece.nom);
+const prixDisponibles = pieces.map(piece => piece.prix);
+for(let i = pieces.length -1 ; i >= 0; i--){
+    if(pieces[i].disponibilite === false){
+        nomDispo.splice(i,1);
+        prixDisponibles.splice(i,1);
+
+    }
+}
+
+const dispoElements = document.createElement('ul');
+
+for(let i=0; i < nomDispo.length ; i++){
+    const nomElement = document.createElement('li');
+    nomElement.innerText = `${nomDispo[i]} - ${prixDisponibles[i]} €`;
+    dispoElements.appendChild(nomElement)
+}
+document.querySelector('.disponible')
+    .appendChild(dispoElements);
