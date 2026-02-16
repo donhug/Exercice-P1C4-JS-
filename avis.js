@@ -13,7 +13,7 @@ export function ajoutListenersAvis() {
 
             const avisElement = document.createElement ("p");
             for(let i =0; i < avis.length;i++ ){
-                avisElement.innerHTML += `${avis[i].utilisateur}: ${avis[i].commentaire}<br>`;
+                avisElement.innerHTML += `${avis[i].utilisateur}: ${avis[i].commentaire} note de :${avis[i].nbEtoiles}/5<br>`;
             }
             pieceElement.appendChild(avisElement);
 
@@ -21,4 +21,23 @@ export function ajoutListenersAvis() {
 
 
     }
+}
+
+export function ajoutListerEnvoyerAvis() {
+    const formulaireAvis = document.querySelector(".formulaire-avis");
+    formulaireAvis.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const avis = {
+            pieceId: parseInt(event.target.querySelector("[name=piece-id]").value),
+            utilisateur: event.target.querySelector("[name=utilisateur]").value,
+            commentaire: event.target.querySelector("[name=commentaire]").value,
+            nbEtoiles : parseInt(event.target.querySelector("[name=etoile]").value),
+        }
+        const chargeUtile = JSON.stringify(avis);
+        fetch("http://localhost:8081/avis",{
+            method: "POST",
+            headers:{"content-Type": "application/json" },
+            body: chargeUtile,
+        })
+    });
 }
